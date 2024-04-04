@@ -1,0 +1,126 @@
+﻿<Page x:Class="PracticeBetonNetV.Pages.Autorization"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PracticeBetonNetV.Pages"
+      mc:Ignorable="d" 
+     d:DesignHeight="750" d:DesignWidth="1100"
+      Background="GhostWhite"
+      Title="Autorization">
+    <Page.Resources>
+        <!-- Стиль для текстовых полей с одной линией снизу -->
+        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="0 0 0 10"/>
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="PasswordBox" BasedOn="{StaticResource {x:Type PasswordBox}}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="0 0 0 10"/>
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="RoundedButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Beton .corp" HorizontalAlignment="Center" 
+               VerticalAlignment="Top" Margin="0,70,0,0" FontSize="60" FontWeight="Medium"
+               Foreground="Black" FontFamily="Mongolian Baiti">
+            <!--<TextBlock.Effect>
+                <DropShadowEffect Color="#FF86A6C1" BlurRadius="200" ShadowDepth="1"/>
+            </TextBlock.Effect>-->
+            <!--<TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" 
+                                                From="Black" To="AliceBlue" Duration="0:0:30" 
+                                                AutoReverse="True" RepeatBehavior="Forever"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>-->
+        </TextBlock>
+        <Grid Grid.Row="1" Height="420" Width="320" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <Border Background="White" CornerRadius="12" Padding="20" Margin="20,20,20,20" Grid.ColumnSpan="2">
+                <Border.Effect>
+                    <DropShadowEffect x:Name="ShadowEffect" Color="AliceBlue" BlurRadius="200" ShadowDepth="7"/>
+                </Border.Effect>
+                <Border.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetName="ShadowEffect" 
+                                    Storyboard.TargetProperty="Color" 
+                                    To="#FFC4E1F4" Duration="0:0:0.9"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetName="ShadowEffect" 
+                                    Storyboard.TargetProperty="Color" 
+                                    To="AliceBlue" Duration="0:0:0.9"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Border.Triggers>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Авторизация" Margin="0,0,0,30" FontSize="20" FontWeight="DemiBold"/>
+                    <Label Content="Логин" Margin="0,48,0,70" Grid.RowSpan="2" FontWeight="DemiBold"/>
+                    <TextBox  Grid.Row="1" x:Name="UsernameTextBox" Margin="0,2,0,64"/>
+                    <Label Content="Пароль" Margin="0,30,0,24" Grid.Row="1" FontWeight="DemiBold"/>
+                    <PasswordBox Grid.Row="1" x:Name="PasswordBox" Margin="0,53,0,57" Grid.RowSpan="2"/>
+                    <Button  Style="{StaticResource RoundedButton}" Grid.Row="2" Content="Вход" FontWeight="DemiBold" Background="#007ACC" Foreground="White" BorderBrush="#007ACC" BorderThickness="1" HorizontalAlignment="Center" Click="Login_Click" Margin="0,20,0,0" Width="240" Height="25" Cursor="Hand" >
+                        <Button.Effect>
+                            <DropShadowEffect Color="AliceBlue" Direction="270" ShadowDepth="5" Opacity="0.5"/>
+                        </Button.Effect>
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>
